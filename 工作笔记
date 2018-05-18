@@ -1,0 +1,124 @@
+白色 50%透明
+	background-color:rgba(255,255,255,0.5)
+黑色 50%透明
+	rgba(0, 0, 0, 0.5)
+	
+jq 没有innerHTML属性，所以用$('.valNum')[0].innerHTML
+
+时间轴插件
+http://www.csslab.cl/2011/08/18/jquery-timelinr/
+
+元素选择符： 1
+class选择符： 10
+id选择符：100
+元素标签：1000
+
+word-wrap（对长的不可分割单词换行）word-wrap：break-word
+
+text-shadow： 5px 5px 5px #FF0000;（水平阴影，垂直阴影，模糊距离，阴影颜色）
+
+三角形
+width: 0;
+height: 0;
+border-top: 40px solid tr ansparent;
+border-left: 40px solid transparent;
+border-right: 40px solid transparent;
+border-bottom: 40px solid #ff0000;
+
+block formatting context
+
+移动端
+<link rel=”stylesheet” type=”text/css” href=”xxx.css” media=”only screen and (max-device-width:480px)”>
+@media only screen and (max-device-width:480px) {/css样式/}
+
+margin
+	需要在border外侧添加空白
+	空白处不需要背景色
+	上下相连的两个盒子之间的空白，需要相互抵消时。
+
+全屏滚动，类似轮播，高度500，宽度100
+overflow：hidden；transition：all 1000ms ease；
+
+视差滚动 parallax scrolling
+
+单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素。
+
+让chrome支持小于12px的文字
+p{font-size:10px;-webkit-transform:scale(0.8);} //0.8是缩放比例
+
+png,无损数据压缩位图文件格式.优点是：压缩比高，色彩好。 大多数地方都可以用。
+jpg是一种针对相片使用的一种失真压缩方法，是一种破坏性的压缩，在色调及颜色平滑变化做的不错。在www上，被用来储存和传输照片的格式
+gif是一种位图文件格式，以8位色重现真色彩的图像。可以实现动画效果.
+webp格式是谷歌在2010年推出的图片格式，压缩率只有jpg的2/3，大小比png小了45%。缺点是压缩的时间更久了，兼容性不好，目前谷歌和opera支持。
+
+ie不支持nth
+
+checkbox 大小
+		style="zoom:120%"
+
+引入字体
+	@font-face {
+	  font-family: 'MyNewFont';   /*字体名称*/
+	  src: url('font.ttf');       /*字体源文件*/
+	}
+
+$('.').each(function(){
+	if($(this).val() == 0){
+		$(this).parent().siblings('.price').css('display','none');
+	}
+})
+
+取值span
+		text()
+		val()
+		html()
+		innerHTML
+		
+多行省略号	
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+下拉刷新
+
+Z-index 仅能在定位元素上奏效（position属性值设置除默认值static以外的元素，包括relative，absolute，fixed样式）
+	1、父标签 position属性为relative；
+	2、问题标签无position属性（不包括static）；
+	3、问题标签含有浮动(float)属性。
+
+box-sizing要在有高度的地方
+
+
+公司网站
+考试系统页面修改
+调查报告页面
+进出口商品修改
+
+遮罩层关闭
+$('.toast').bind('click',function(e){
+    var target = e.target;
+    if(target.closest('.main-container3')==null){
+        $('.toast').hide();
+    };
+})    
+利用，position:fixed;top...
+div.toast{
+    display: none;
+    background: rgba(0, 0, 0, 0.6);
+     position: fixed;
+     margin:auto;
+     left:0; 
+     right:0; 
+     top:0;
+     bottom: 0;
+     z-index: 999;
+	
+}
+
+
+
+
+
+
+
+

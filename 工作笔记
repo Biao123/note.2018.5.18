@@ -115,6 +115,161 @@ div.toast{
 	
 }
 
+querySelector('')
+querySelectorAll('')
+
+阻止冒泡,或者jq里直接 return false；
+function stopPropagation(e){
+	e = e || window.event;
+	if(e.stopPropagation){
+		//w3c
+		e.stopPropagation
+	}else{
+		e.cancelPropagation = true;  //ie阻止
+	}
+}
+
+e.preventDefault;//阻止默认行为
+最好的结局是不忘记么
+苦情花亦是合欢花
+
+检测是否为微信
+function is_weixin(){
+	var ua = navigator.userAgent.toLowerCase();
+	if(ua.match(/MicroNessenger/i) == 'micromessenger'{
+		return true;
+	}else{
+		return false;
+	})
+}
+
+jq获取鼠标坐标
+$('').click(function(e){
+	console.log(e.offsetX + e.offsetY)
+	$(this).offset().left;
+})
+
+正则表达式
+	+前面字符至少出现一次
+	*前面字符可以出现也可以不出现
+	?前面的字符最多只可以出现一次
+	$字符串结尾
+	{n}匹配确定的非负整数
+	{n,m}匹配大于n，小于m的值
+	^字符串的开始
+	g是全局
+	i是不分大小
+//匹配字母、数字、中文字符
+/^([A-Za-z0-9]|[\u4e00-\u9fa5])*$/
+
+//验证邮箱
+/^\w+@([0-9a-zA-Z]+[.])+[a-z]{2,4}$/ 
+
+//验证手机号
+/^1[3|5|8|7]\d{9}$/
+
+//验证URL
+/^http:\/\/.+\./
+
+//验证身份证号码
+/(^\d{15}$)|(^\d{17}([0-9]|X|x)$)/
+
+//匹配中文字符的正则表达式
+/[\u4e00-\u9fa5]/
+
+//匹配双字节字符(包括汉字在内)
+/[^\x00-\xff]/
+
+时间
+function formatDate(now)   {     
+    var y=now.getFullYear();
+    var m=now.getMonth()+1;
+    var d=now.getDate();
+    var h=now.getHours();
+    var m=now.getMinutes();
+    var s=now.getSeconds();
+    return y+"-"+m+"-"+d+" "+h+":"+m+":"+s;     
+}     
+
+var d=new Date(1442978789184);
+alert(formatDate(d));
+
+元素位置
+var X = this.getBoundingClientRect().left; 
+var Y = this.getBoundingClientRect().top; 
+//相当于
+//jquery的： this.offset().left、this.offset().top
+//js的：this.offsetLeft、this.offsetTop
+
+
+
+
+
+
+
+考试系统-个人中心页面切割。
+直通车选择部门弹出层方法修改。
+直通车建议选项
+直通车查看页面
+天一阁修改
+考试系统查看页面
+公司网站
+
+
+
+关于居中
+	1 把一些 div 的显示方式设置为表格，因此我们可以使用表格的 vertical-align property 属性。
+	2 
+
+v-for 
+
+虚拟dom	
+核心功能是如何识别并保存新旧节点数据结构之间差异的方法，也即是diff算法。
+	相当于模拟dom的树状结构，再内存中创建保存映射dom信息的节点数据，
+	在交互时需要视图更新的时候，通过对节点数据进行diff后得到差异结果后，一次性进行批量更新操作，提高吸能
+
+window.location.Roload()
+window.location.href()
+
+五种jquery ajax
+	1 load(url,[data],[callback])
+		载入远程html文件代码插入dom中，默认使用get，传参使用post
+		$("#showload").load("load.htm", { "para": "para-value" },
+		    function() {
+		        //处理
+		})
+
+	2 jQuery.get(url,[data],[callback])
+		$.get('jquery.html',{'id':this.id},
+				function(req){
+					//成功时返回
+					$('#showget').html(req);
+				}
+			)
+	4.jQuery.getScript(url,[callback])
+		通过 GET 方式请求载入并执行一个JavaScript文件。
+
+		$.ajax({
+		  url: url,
+		  dataType: 'json',
+		  asyc:true,//默认是true
+		  data: data,
+		  cache:false,  
+		  type:'GET',
+		  beforeSend: function() {
+		        //请求前的处理
+		    },
+		  success: function(req) {
+		        //请求成功时处理
+		    },
+		  complete: function() {
+		        //请求完成的处理
+		    },
+		  error: function() {
+		        //请求出错处理
+		    }
+		});
+
 
 
 

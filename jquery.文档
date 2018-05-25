@@ -1,0 +1,87 @@
+http://hemin.cn/jq/show.html
+筛选：
+	eq(index|-index)
+		整数从0开始
+		负数从1开始倒数开始算
+
+	first()
+	last()
+	hasClass()
+
+	$('p').filter('.selected,:first')
+	$('p').filter(function(index){
+		return $('ol',this).length = 0;
+	})
+
+	is() //boolean判断是否正确
+		$("input[type='checkbox']").parent().is("form");
+
+	map() //将元素转换成数组
+		$('input').map(function(){
+			return $(this).val();
+		}).get().join(',')
+
+	has() //包含特定后代的元素。去掉那些不包含指定后代的元素
+	$('li').has('ul').css('background-color', 'red');
+
+	not()
+	$("p").not( $("#selected")[0] )
+
+	slice() //选取哪里开始到哪里，负数就是倒数开始
+	$("p").slice(1, 2).wrapInner("<b></b>");
+
+	nextAll() //当前所有元素之后的同辈元素
+	$("div:first").nextAll().addClass("after");
+
+	offsetParent() //第一个匹配元素用于定位的节点
+	$("p").offsetParent().css("background-color","red");
+
+	prev()
+	$("p").prev(".selected")
+
+	prevAll()
+	$("div:last").prevAll().addClass("before");
+
+	add()
+	$("p").add("<span>Again</span>")
+
+	contents() //查找所有子节点
+	$("p").contents().not("[nodeType=1]").wrap("<b/>");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+全局、系列、数据三个层级去设置数据图形的样式。
+由数据驱动，数据的改变驱动图表展现的改变
+
+roseType: 'angle'
+	南丁格尔图会通过半径表示数据的大小。
+
+颜色主题（Theme）
+调色盘
+直接样式设置（itemStyle、lineStyle、areaStyle、label、...）
+视觉映射（visualMap）
+
+var chart = echarts.init(dom,'light');//dark,默认的俩个全局颜色主题
+
+option = {
+    // 全局调色盘。
+    color: ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'],
+
+    series: [{
+        type: 'bar',
+        // 此系列自己的调色盘。
+        color: ['#dd6b66','#759aa0','#e69d87','#8dc1a9','#ea7e53','#eedd78','#73a373','#73b9bc','#7289ab', '#91ca8c','#f49f42'],
+        ...
+    }, {
+        type: 'pie',
+        // 此系列自己的调色盘。
+        color: ['#37A2DA', '#32C5E9', '#67E0E3', '#9FE6B8', '#FFDB5C','#ff9f7f', '#fb7293', '#E062AE', '#E690D1', '#e7bcf3', '#9d96f5', '#8378EA', '#96BFFF'],
+        ...
+    }]
+}
+
+异步加载
+eval()处理json
+
+myChart.showLoading();
+myChart.hideLoading();
+
+dataset管理数据
+
+
+
+dataZoom通过数据过滤来控制大小
+dataZoom.start
+dataZoom.end
+dataZoom.startValue
+dataZoom.endValue
+
+dataZoomInside	位于坐标系,滚轮滑动
+dataZoomSlide   单独的滑动条，默认x轴
+dataZoomSelect  全屏的选框进行数据区域缩放
+
+
+
+
+
+
+
+
+
+
+
+
+dataset and scatter
+

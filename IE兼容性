@@ -1,0 +1,27 @@
+background: url(../images/cjgl-bd.png) no-repeat;一定要留出空格
+
+不要使用nth
+
+同行的float，俩边都要使用
+
+ie的button自带宽高，absolute有空隙
+
+控制div的最大字数
+function get_len(str){
+    var len=str.length;
+    var realLen=len;
+    for(var i=0;i<len;i++){
+        var code=str.charCodeAt(i);
+        if(!(code>=0&&code<=128)){
+            realLen++;
+        }
+    }
+    return realLen;
+}
+function ellipsis(text, maxLength) {
+    var ret = text;
+    if (get_len(text) > maxLength) {
+        ret = ret.substr(0,maxLength-3) + "...";
+    }
+    return ret;
+}

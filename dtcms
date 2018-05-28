@@ -1,0 +1,34 @@
+http://demo.dtcms.net/admin/index.aspx
+
+站点管理新增
+
+频道管理设置main
+
+栏目管理设置有几个分类
+
+
+返回站点新增内容页
+
+关于页面
+<a href="<%linkurl("jude_product",37)%>">GUT</a> "string",int  //跳转链接
+
+
+//循环
+<!--取得一个分页DataTable--><!-- channel 频道名称 “test”   category_id 22,  -->
+<%set DataTable newsList=get_article_list("test", 23, 12, 0, "status=0", out totalcount, out pagelist, "test_list", 23, "__id__")%>
+<%foreach(DataRow dr in newsList.Rows)%>        
+    <li>
+        <h2><a href="<%linkurl("test_show",{dr[id]})%>">{dr[title]}</a></h2>
+    </li>
+<%/foreach%>
+
+//内容
+<%set DataTable newsList=get_article_list("jude", 26, 1, "status=0")%>
+<%foreach(DataRow dr in newsList.Rows)%>
+<div class="contact_us_content">
+	{dr[content]}
+</div>
+<%/foreach%>
+
+//img
+<img src="{dr[img_url]}" alt="product1" class="product1">

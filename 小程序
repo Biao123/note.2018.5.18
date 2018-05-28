@@ -1,0 +1,128 @@
+app.json
+	{
+		"pages":[
+			'pages/index/index',
+		],
+		"window":[
+			'backgroundTextStyle':'light',
+		]
+	}
+
+手机设备的屏幕宽度和分辨率问题所以独创rpx，浮点数，具体有小程序自动设置
+
+<view>{{msg}}</view>
+<view>{{array[0].msg}}</view>
+Page({
+	click:function(){
+		this.setData({msg:'hello world'})
+	},
+	data:{
+		text:'hello',
+		array:[{msg:'1'},{msg:'2'}]
+	}
+})
+
+客户端打开时先把程序代码下载到本地
+通过app.json里的pages知道页面路径
+之后app.js启动onlunch回掉执行
+App({
+	onLaunch:function(){
+		//
+	}
+})
+
+组件
+	 <map longitude='宁波' latitude='宁波纬度'></map>
+
+API
+	wx.scanCode({
+		success:(res) => {
+			console.log(res)
+		}
+	})
+	wx.getLocation({
+		type:'wgs84',
+		success:(res) =>{
+			var latitude = res.latitude;
+			var longitude = res.longitude;
+		}
+	})
+
+框架
+	
+逻辑层
+	onLaunch
+	onShow
+	onHide
+	onError
+	onPageNotFound
+只有当小程序进入后台一定时间，或者系统资源占用过高，才会被真正的销毁
+如果开发者没有添加 onPageNotFound 监听，当跳转页面不存在时，将推入微信客户端原生的页面不存在提示页面
+
+App({
+	onLaunch:function(options){
+
+	},
+	onShow:function(){
+
+	},
+	globalData:'hello',
+	onPageNotFound(res){
+		wx.redirectTo({
+			url:'pages/logs/logs'
+		})
+	}
+})
+
+getApp()
+全局函数获取小程序实例
+var appInstance = getApp()
+console.log(getApp.globalData)
+
+注册页面
+	onUnload
+	onReachBottom
+	onShareAppMessage
+	onPageScroll
+	onTabItemTap(item){
+		console.log(item.index)
+	}
+	onPullDownRefresh
+
+</view>
+
+事件处理函数
+	<view bindtap='viewTap'></view>
+Page({
+	viewTap:function(){
+		console.log('viewTap')
+	}
+})
+
+Page.prototype.route 可以获取当前页面的路径
+Page.prototype.setData() 将函数从逻辑层发送到视图层（异步），同时改变对应的 this.data 的值（同步）。
+
+路由
+	初始化
+	打开新页面 wx.navigateTo  <navigator open-type='navigatorTo'/>
+	页面重定向 wx.redirectTo  <navigator open-type="redirectTo"/>
+	页面返回   wx.navigatorBack
+	Tab切换    wx.switchTab		
+	重加载	   wx.reLaunch
+	getCurentPages()
+
+模块化
+	
+
+
+
+
+
+
+
+
+
+
+
+
+

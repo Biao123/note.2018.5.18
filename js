@@ -43,3 +43,117 @@ $('.more').click(function(){
 		}
 	}
 }) 
+
+//hover显示
+$(function () {
+    $(".n_middle ul li").hover(function () {
+        $(this).children("dl").slideDown();
+    }, function () {
+        $(this).children("dl").hide();
+    });
+});
+
+//获取链接字段
+function getRootPath(){
+	var curPath = window.document.location.href; //网址  http://localhost:80/ybzx/index.jsp  
+
+	var pathName = window.document.location.pathname; //主机地址之后的目录 ybzx/index.jsp  
+ 
+	var pos = curPath.indexOf(pathName); //获取主机地址 http://localhost:80
+
+	var localhostPaht = curPath.substring(0,pos);  //获取带"/"的项目名，如：/ybzx
+	console.log(curPath);
+	console.log(pathName);
+	console.log(pos);
+
+	var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);  
+    console.log(localhostPaht+projectName);
+}
+getRootPath()
+
+$('.digg').click(function(){
+	var curPath = window.document.location.href; //网址  http://localhost:80/ybzx/index.jsp  
+
+	var pathName = window.document.location.pathname; //主机地址之后的目录 ybzx/index.jsp  
+ 
+	var pos = curPath.indexOf(pathName); //获取主机地址 http://localhost:80
+
+	var localhostPaht = curPath.substring(0,pos);  //获取带"/"的项目名，如：/ybzx
+	console.log(curPath);
+	console.log(pathName);
+	console.log(pos);
+	console.log(localhostPaht);
+
+	var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);  
+    console.log(localhostPaht+projectName);	
+})
+
+$('.digg').click(function(){
+	$('.pcgb_right_menu_ul li').each(function(){
+	    if($(this).hasClass('li_active')){
+	    	alert($(this).index())
+	    	return;
+	    }          
+	});   
+})
+
+//获取当前index
+	var Index = $('.li_active').index();
+	var Index2 = $('.btn_active').index();
+
+//选择某一段url
+$('.digg').click(function(){
+	var curPath = window.document.location.href;
+	var pageId=curPath.substring(curPath.indexOf("pc/")+3,curPath.indexOf("pc/")+6);
+	console.log(curPath)
+	console.log(pageId);
+})
+
+//a页面点击使用sessionStorage存取一个键值对，在b页面的onload中获取这个键名
+$('').click(function(){
+	sessionStorage.setItem('from','pageA')
+})
+window.onload = function(){
+	var from = sessionStorage.getItem('from');
+	if(from == 'pageA'){
+		//dosomething
+		sessionStorage.setItem('form','');
+	}
+}
+
+
+//锚点
+<a href="#miao">去找喵星人</a>;
+<a name="miao"></a>;
+=>
+<h3 id="miao">喵星人基地</h3>;
+跨页面跳转
+在href路径加上：#+锚点名。
+	<a href="萌宠集结号.html#miao">跳转到萌宠集结号页面</a>
+	<a name="miao"></a>;
+	或者<h3 id="miao">喵星人基地</h3>;
+
+//
+<link rel="Shortcut Icon" href="favicon.ico"> IE地址栏前换成自己的图标
+confirm("确实要删除吗?");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

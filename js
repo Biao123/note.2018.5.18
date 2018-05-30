@@ -137,22 +137,53 @@ window.onload = function(){
 <link rel="Shortcut Icon" href="favicon.ico"> IE地址栏前换成自己的图标
 confirm("确实要删除吗?");
 
+offsetWidth = border-left + border-right + padding-left+padding-right+元素本身的宽度;
+offsetHeight = border-top + border-bottom + padding-top+padding-bottom+元素本身的高度；
+offsetTop = pardent.margin-top +pardent.border-width+ pardent.padding-width =20+20+40;
+页可见区域宽： document.body.clientWidth;
+网页可见区域高： document.body.clientHeight;
+网页可见区域宽： document.body.offsetWidth (包括边线的宽);
+网页可见区域高： document.body.offsetHeight (包括边线的宽);
+网页正文全文宽： document.body.scrollWidth;
+网页正文全文高： document.body.scrollHeight;
+网页被卷去的高： document.body.scrollTop;
+网页被卷去的左： document.body.scrollLeft;
+网页正文部分上： window.screenTop;
+网页正文部分左： window.screenLeft;
+屏幕分辨率的高： window.screen.height;
+屏幕分辨率的宽： window.screen.width;
+屏幕可用工作区高度： window.screen.availHeight;
 
+getBoundingClientRect用于获取某个元素相对于视窗的位置集合。集合中有top, right, bottom, left等属性。
+	//相对于网页的上边
 
+//屏蔽功能键
+function look(){
+	if(event.shiftKey){
+		alert()
+	}
+}
+document.onKeydown = look;
 
+overflow:scroll;overflow-x:hidden
+<body scroll="no">
 
+//ratio  checkbox
+<input type='radio' checked name='sex'>
+ $("[name='sex']:eq(1)").attr("checked",true);或$("[name='sex']:eq(1)").attr("checked","");
+ $("[name='sex']:eq(1)").prop("checked",true);或$("[name='sex']:eq(1)").prop("checked","");
 
-
-
-
-
-
-
-
-
-
-
-
+//prop() 设置和返回被选元素的属性和值
+如果使用attr方法获取时： 
+1、如果当前input中初始化未定义checked属性，则不管当前是否中，$(“#check”).attr(“checked”)都会返回undefined；
+2、如果当前input中初始化已定义checked属性，则不管是否选中，$(“#selectAll”).attr(“checked”)都会返回checked.
+$("button").click(function(){
+    var $x = $("div");
+    $x.prop("color","FF0000");
+    $x.append("The color 属性： " + $x.prop("color"));
+    $x.removeProp("color");
+});
+ 
 
 
 

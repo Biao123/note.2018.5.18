@@ -1,0 +1,19 @@
+
+//设置名字
+$ git config --global user.name "Your Name"
+$ git config --global user.email "email@example.com"
+
+
+//创建仓库
+$ mkdir learngit
+$ cd learngit
+$ pwd
+/Users/michael/learngit
+
+//在创建的仓库里写
+$ git commit -m "wrote a readme file"
+
+git status
+git diff
+
+修改后重新add然后commit

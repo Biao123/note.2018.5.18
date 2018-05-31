@@ -17,3 +17,32 @@ git status
 git diff
 
 修改后重新add然后commit
+
+git log 查看
+git log --pretty=oneline
+1b9c981d7d6b257d31909d46b3e0315436fe4f6f (HEAD -> master) second
+前面一串数字就是版本号 commit id
+
+git reset -- hard HEAD^
+当前版本时HEAD
+上一个版本时HEAD^
+HEAD^^
+HEAD~100
+
+cat readme.txt 查看内容
+
+git reset -- hard 1b9c8  时光机返回，只需要之前版本号的前几位就可以了
+
+
+之前的回退时光机都是要在窗口未关闭的时候，关闭了就不知道之前的commit id了
+使用git reflog查看所有的操作
+
+git checkout -- readme.txt
+回到最近一次的add,commit
+	该乱某个文件内存，想直接丢弃git checkout -- file
+	该乱某个文件而且git add file了，需要先回退版本git reset -- hard HEAD^，然后在git checkout -- file
+	
+删除某个文件
+rm file
+
+

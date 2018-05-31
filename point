@@ -1,0 +1,106 @@
+直接调用那么就是访问当前上文作用域内的叫getName的函数
+
+变量声明提升
+	所有声明变量或声明函数都会被提升到当前函数的顶部
+	console.log(x)
+	var x;
+	x = 0;
+	=>var x;
+	  console.log(X)
+	  x = 0;
+
+var getName = function(){alert(1)}
+function getName(){alert(2)}
+=>
+function getName(){}
+var getName;
+getName = function(){}
+
+getName(); // 5
+var getName = function () { alert (4) };
+getName(); // 4
+function getName() { alert (5) }
+=>
+function(){}
+var getName
+getName()
+getName = function(){}
+getName()
+
+浏览器存储
+localStorage(),sessionStorage(),cookie()
+都是保存在浏览器端，仅同源共用
+1 数据
+	cookie内存小不能超过4k，始终在同源的http请求中携带，在设置的cookie过期之前有效，在所有同源窗口都是共享的，只要浏览器不关闭数据都存在
+
+	localStorage内存5M，不会自动发送数据到服务器，仅在本地保存，数据始终有效即使浏览器关闭，在所有同源窗口有效
+
+	sessionStorage内存5M，不会自动发送数据到服务器，仅在本地保存，仅在当前浏览器窗口关闭之前有效，在所有同源窗口有效
+
+跨域
+	来源于现代浏览器，指在端口号，域名，协议名相同的情况下才允许相同的cookie,localStorage和ajax请求，否则就是跨域
+
+js	
+	单线程，非阻塞，发生异步的时候主线程会挂起pending任务，在异步完成后去执行响应回掉，event loop
+	js将异步方法分为macro task:setTimeout和setInterval      micro task:new Promise
+	js会先执行完所有micro task再去执行macro task
+
+关于es6
+	let：只在当前作用域有效，外部报错referenceError,
+		 不会变量提升，报错referenceError，var会undefined未定义
+		 不允许重复定义，var后面赋值会覆盖前面的
+		 只要块级作用域存在let命令，它所声明的变量就绑定binding了这个区域，不再受外部影响，称为暂时性锁区
+		 
+reflow和repaint
+浏览器收到html构建dom树，css渲染树，生成render tree，然后进行绘制，遇到<script>会执行并阻塞渲染
+		重新收到新的css后会进行reflow回流然后重绘repaint
+
+浏览器加载渲染过程
+		浏览器根据DNS解析得到ip地址
+		向这个ip地址发送http请求
+		服务器收到，处理并返回http请求
+		浏览器得到返回内容
+
+//懒加载和预加载
+	懒加载，延迟加载，在长网页中延迟加载图像，切记要先设置图片的g高度
+		将页面上的src属性设为空字符串，而图片真实路径则设置在data-original属性中，页面滚动时监听scroll事件回调判断图片是否进入可视区域
+		如果在可视区域内就将属性设置为data-original的值
+		<img src="" class="image-item" lazyload="true"  data-original="images/1.png"/>
+		var viewHeight = document.documentElement.clientHeight  //获取可视高度
+		function lazyLoad(){
+			var eles = document.querySelectorAll('img[data-original][lazyload]')
+			Array.prototype.forEach.call(eles,function(item,index){
+				var rect;
+				if(item.dataset.original === ''){
+					return;
+				}else{
+					rect = item.getBoundingClientRect() //获取视角
+					if(rect.bottom >= 0 && rect.top < viewHeight){
+						// !function(){
+							var img = new Image();
+							img.src = item.dataset.url;
+							img.onload = function(){
+								item.src = img.src;
+							// }
+							item.removeAttribute（"data-original"）//移除属性，下次不再遍历
+							item.removeAttribute（"lazyload"）
+						}
+					}
+				}
+			})
+		}
+		lazyload(); //刚开始还没滚动屏幕时，要先触发一次函数，初始化首页的页面图片
+		document.addEventListener("scroll"，lazyload);
+
+	//预加载
+
+
+//添加字体
+@font-face{
+    font-family: 'you yuan';
+    src : url('../fonts/youyuan.TTf');
+}
+@font-face{
+    font-family: 'you yuan';
+    src : url('../fonts/youyuan.TTf');
+}

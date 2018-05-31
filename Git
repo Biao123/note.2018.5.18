@@ -8,7 +8,7 @@ $ git config --global user.email "email@example.com"
 $ mkdir learngit
 $ cd learngit
 $ pwd
-/Users/michael/learngit
+/Users/michael/learngit 
 
 //在创建的仓库里写
 $ git commit -m "wrote a readme file"
@@ -44,5 +44,91 @@ git checkout -- readme.txt
 	
 删除某个文件
 rm file
+
+和GITHUB远程
+$ ssh-keygen -t rsa -C "youremail@example.com"  //返回id_rsa和id_rsa.pub
+在github上添加一个ssh-key，加上id_rsa.pub
+
+
+git remote add origin git@github.com:Biao123/gitSkills
+	如果fatal;就先删除原有仓库
+	git remote rm origin
+
+之后就可以
+$ git push origin master直接推送到github
+
+
+$ git clone git@github.com:michaelliao/gitskills.git
+
+创建分支：git branch <name>
+
+git checkout -b dev
+	加上-b 参数表示创建并切换
+
+切换分支
+	git checkout dev
+	git checkout master
+
+合成分支
+git merge dev
+
+删除原来的分支
+git branch -d dev
+
+当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。
+
+解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。
+
+用git log --graph命令可以看到分支合并图。
+
+ git merge --no-ff -m "merge with no-ff" dev
+ 	//--no-ff代表禁用Fast forward
+
+暂时隐藏
+	git stash
+	然后再修改bug
+	git checkout -b bug101
+	git add readme.txt
+	git commit -m 'fixed'
+	git checkout master
+	git merge --no-ff -m 'bug fixed' bug101
+
+	git checkout dex
+	git status
+	git stash list查看刚才存储的工作现场
+	俩种恢复
+		git stash apply恢复后原先的stash内容没有删除
+		git stash drop
+
+		git stash pop恢复同时删除了stash内容
+
+//当一个分支的内容修改并commit之后，要删除的时候，需要使用-D大写的D来强心删除
+$ git branch -D feature-vulcan
+
+推送失败，因为你的小伙伴的最新提交和你试图推送的提交有冲突，解决办法也很简单，Git已经提示我们，先用git pull把最新的提交从origin/dev抓下来，然后，在本地合并，解决冲突，再推送：
+
+标签管理,标签不是按照时间顺序列出的，是按字母排序的
+	git branch
+	git checkout master
+	git tag v1.0
+	git tag
+默认是打在最新的commit上的
+之前的可以在历史找到提交的commit id
+git tag v1.0 id
+git tag
+//-a指定标签名，-m指定说明文字
+$ git tag -a v0.1 -m "version 0.1 released" 1094adb
+
+//删除tag,因为创建的标签都只存储在本地，不会自动推送远程，所以可在本地安全删除
+git tag -d v1.0
+
+git push origin --tags
+
+//远程删除
+git push origin :refs/tags/v1.0
+
+//设置快捷键
+$ git config --global alias.st status
+
 
 

@@ -1,0 +1,31 @@
+https://segmentfault.com/a/1190000006178770#articleHeader2
+
+模块打包机：它做的事情是，分析你的项目结构，
+	找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（Scss，TypeScript等），并将其转换和打包为合适的格式供浏览器使用。
+
+把你的项目当做一个整体，通过一个给定的主文件（如：index.js），
+	Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的JavaScript文件。
+
+
+
+npm install --save-dev webpack  局部安装
+npm install -g webpack
+
+npm init 开始准备
+“__dirname”是node.js中的一个全局变量，它指向当前执行脚本所在的目录。
+webpack
+	public
+		bundle.js
+		index.html
+	app
+		greet.js
+		main.js
+	node_modules
+	package.json
+	webpack.config.js
+	package-lock.json
+
+终端使用webpack {entry file} {destination for bundled file}
+
+
+

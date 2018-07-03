@@ -1,0 +1,124 @@
+app实例
+
+生命周期
+	钩子的this指向调用他的vue实例
+
+beforeDestory再实例销毁前调用，解绑一些addEventListener监听的事件
+mounted:function(){
+	var _this = this; //声明一个变量指向vue实例this，保证作用域一直
+	this.timer = setInterval(function(){
+		_this.date = new Date()
+	},1000)
+},
+beforeDestoryed:function(){
+	if(this.timer){
+		clearInterval(this.timer)
+	}
+}
+
+v-html 输出html
+v-pre  {{这里的内容不会被编译的}}
+
+三元表达式
+{{isOk ? a : b}}
+{{text.split(',').reverse().join(',')}}
+{{number/10}}
+
+过滤器，可以串联和添加过滤参数
+{{data | formData}}
+filters:{
+	formData:function(value){
+
+	},
+	return item.name.match(/javascript/);
+}
+
+// 7.1-18页
+
+替换数组
+Vue.set(app.book,3{
+	name:'hello'
+})
+this.$set(app.book,3{
+	name:"hello"
+})
+
+过滤和排序
+v-for='item in filterBooks'
+compoted:{
+	filterBooks(){
+		return this.books.filter(function(book){
+			return book.name.match(/javascript/);
+		})
+	}
+}
+
+// 方法
+add:function(count){
+	count = count || 1;
+	this.count += count;
+}
+
+// 7.2  45Ye
+
+非父子组件
+	兄弟组件和跨多级组件
+
+父级一级或多级以上
+this.dispatch('on-message','来自内部组件的数据')
+on-message:function(msg){
+	this.message = msg
+}
+
+2.0以后，使用一个空的vue实例作为中央事件总线bus为中介媒体
+	var bus = new Vue()
+组件子级
+	handleEvent:function(){
+		bus.$emit('on-message','来自内部组件的数据')
+	}
+父级
+	mounted:function(){
+		var _this = this;
+		bus.$on('on-message',function(msg){
+			_this.message = msg
+		})
+	}
+
+父链和子组件索引，中央事件bus总线，传递组件通信
+
+$parent
+$children
+
+组件子级
+	handleEvent:function(){
+		this.$parent.message = '来自父链的数据'
+	}
+父级
+	data(){
+		return{
+			message:''
+		}
+	}
+
+使用特殊属性ref为子组件指定一个索引名称
+父级
+	button @click='handleEvent'
+	<com-a ref='coma'
+
+子组件
+	data(){
+		return{
+			message:'子组件数据'
+		}
+	}
+	//通过this.$refs来访问子组件的数据
+	handleEvent:function(){
+		var msg = this.$refs.coma.message;
+		console.log(msg)
+	}
+
+7.3 83页
+
+
+
+

@@ -1,0 +1,168 @@
+a-element-ui.js
+
+// 栅格布局，gutter表示每一栏的间隔，:offset="6"偏移
+// type='flex' justify='center/start/end'
+// push向右，pull向左
+<el-row :gutter='20'
+	<el-col :spam='4' :offset="6"
+
+<el-row
+	<el-button type='primiary' plain circle round icon="el-icon-delete" disabled
+	<el-button type="text">文字按钮</el-button>
+
+	// //按钮组
+	<el-button-group>
+	  <el-button type="primary" icon="el-icon-arrow-left">上一页</el-button>
+	  <el-button type="primary">下一页<i class="el-icon-arrow-right el-icon--right"></i></el-button>
+	</el-button-group>
+
+// :loading:true
+<el-button type="primary" :loading="true" size='small'>加载中</el-button>
+
+///input
+///或者通过slot来决定图标位置
+///<i slot="suffix" class="el-input__icon el-icon-date"></i>
+<el-input
+  placeholder="请输入内容"
+  v-model="input"
+  clearable
+  prefix-icon="el-icon-search"
+  suffix-icon="el-icon-date"
+  <i slot="suffix" class="el-input__icon el-icon-date"></i>
+  :disabled="true">
+</el-input>
+
+// 文本框，:rows="2"设置高度，:autosize="{ minRows: 2, maxRows: 4}"
+<el-input
+  type="textarea"
+  :rows="2"
+  placeholder="请输入内容"
+  v-model="textarea">
+</el-input>
+
+// 复合框，通过slot='prepend/append'
+  <el-input placeholder="请输入内容" v-model="input3">
+    <template slot="prepend">Http://</template>
+  </el-input>
+
+// 可带输入建议的输入框
+<el-autocomplete
+      class="inline-input"
+      v-model="state1"
+      :fetch-suggestions="querySearch"
+      placeholder="请输入内容"
+      @select="handleSelect">
+</el-autocomplete>
+
+// 加减计步器,label='hello'.@change='handleChange'
+// :precision="2"精确度几位数，size='medium'
+// controls-position="right",加减在一起有多少数量，只显示第一次的选择
+<template>
+  <el-input-number v-model="num3" :step="2" disabled :min='1' :max='10'></el-input-number>
+</template>
+data(){
+	return{
+		num3:1
+	}
+}
+
+// select选择器
+// mnultiply 多选,disabled
+// collapse-tags直接相同的加一
+<el-select clearable v-model='value' placeholder='请选择'
+	<el-option v-for='item in items' :label='item.label'
+		:value='item.value' :key='item.key' :disabled:'item.disabled'
+
+// 自定义，加在el-option里，存在就显示，slot性质
+<span style="float: left">{{ item.label }}</span>
+<span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
+
+// filterable可搜索
+// :filter-method是一个过滤方法
+// remote向服务器搜索，:remote-method="remoteMethod"
+
+// 多级菜单,expand-trigger='hover'划过出现,disabled
+// show-all-levels选择要的路径。:show-all-levels='false'
+// 默认值selectedOptions3: ['zujian', 'data', 'tag']
+// change-on-select边选边出现
+<el-cascader :options='options' v-model='selectOption' @change='handleChange'
+optionsWithDisabled: [{
+          value: 'zhinan',
+          label: '指南',
+          disabled: true,
+          children: [{
+            value: 'shejiyuanze',
+            label: '设计原则',
+            children: [{
+              value: 'yizhi',
+              label: '一致'
+            }]
+           }]
+          }]	
+	
+// 动态加载，@active-item-change="handleItemChange"，:props="props"
+
+// switch滑块，disabled
+<el-switch
+  v-model="value2"
+  active-color="#13ce66"
+  inactive-color="#ff4949">
+  active-text="按月付费"
+  inactive-text="按年付费"
+</el-switch>
+
+<el-tooltip :content="'Switch value: ' + value5" placement="top">
+  <el-switch
+    v-model="value5"
+    active-color="#13ce66"
+    inactive-color="#ff4949"
+    active-value="100"
+    inactive-value="0">
+  </el-switch>
+</el-tooltip>
+
+// slider滑块，disabled,:step="10",show-stops
+// show-input有提示框
+// range,:max="10" [1,4]
+// vertical,height='200px'必须设置高度
+// 默认都有:show-tooltip="false",:show-tooltip="formatTooltip"
+<el-slider v-model="value4" :format-tooltip="formatTooltip"></el-slider>
+
+
+// form
+// :inline="true"变成行内表单
+<el-form ref="form" :model="form" label-width="80px">
+	<el-form-item label='活动名称'
+		<el-input placeholder='活动名称' v-model="form.name"
+
+// v-model="labelPosition改变表单域的位置，left,right,top
+// :label-position="labelPosition"
+
+
+// rules表单验证,rules="rules"，通过prop='name'
+// @click="submitForm('ruleForm')"
+// ref='ruleForm'验证，this.$refs.['ruleForm'].validate((valid) => {})
+// 或者单个逐步验证
+<el-form :model='ruleForm' rules="rules" ref='ruleForm' label-width='100px' class='myForm'
+	<el-form-item prop='name' label='name'
+		:rules="[
+      { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+      { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+    ]"
+
+
+// table,prop='data'传递数据
+// border
+// height="250"固定表头
+// fixed="right"
+// :row-class-name="tableRowClassName"给某一行加效果
+<el-table :data='tableData' stripe style="width=100%"
+	<el-table-column prop='data' label='日期' width='100px'
+tableRowClassName({row, rowIndex}) {
+        if (rowIndex === 1) {
+          return 'warning-row';
+        } else if (rowIndex === 3) {
+          return 'success-row';
+        }
+        return '';
+      }

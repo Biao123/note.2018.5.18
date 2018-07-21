@@ -1,0 +1,79 @@
+关于深拷贝.html
+
+1 对象的深拷贝
+	var copyObj = {
+	    name: 'ziwei',
+	    arr : [1,2,3]
+	}
+	var targetObj = JSON.parse(JSON.stringify(copyObj))
+	此时 copyObj.arr !== targetObj.arr  已经实现了深拷贝 
+		缺点是
+			如果你的对象里有函数,函数无法被拷贝下来
+			无法拷贝copyObj对象原型链上的属性和方法
+
+·只有对象里嵌套对象的情况下,才会根据需求讨论,我们要深拷贝还是浅拷贝。
+	无论哪种拷贝，内存空间都不同
+	var obj2 = shallowCopy( obj1 , {})
+		浅拷贝对象里的arr引用指向的都是相同的内存空间
+	var obj2 = deepCopy( obj1 , {})
+		深拷贝他们2个对象里arr的引用,指向【不同的】内存空间
+
+for 循环实现数组的深拷贝
+
+	var arr = [1,2,3,4,5]
+	var arr2 = copyArr(arr)
+	function copyArr(arr) {
+	    let res = []
+	    for (let i = 0; i < arr.length; i++) {
+	     res.push(arr[i])
+	    }
+	    return res
+	}
+
+slice抽离全部数组实现深拷贝
+	var arr = [1,2,3,4,5]
+	var arr2 = arr.slice(0)
+	arr[2] = 5
+	console.log(arr)
+	console.log(arr2)
+
+concat 方法连接自己返回新数组实现数组的深拷贝
+	var arr = [1,2,3,4,5]
+	var arr2 = arr.concat()
+	arr[2] = 5
+	console.log(arr)
+	console.log(arr2)
+
+ES6扩展运算符
+	var arr = [1,2,3,4,5]
+	var [ ...arr2 ] = arr
+	arr[2] = 5
+	console.log(arr)
+	console.log(arr2)
+
+
+对象for循环的深拷贝
+	var obj = {
+	  name: 'FungLeo',
+	  sex: 'man',
+	  old: '18'
+	}
+	var obj2 = copyObj(obj)
+	function copyObj(obj) {
+	  let res = {}
+	  for (var key in obj) {
+	    res[key] = obj[key]
+	  }
+	  return res
+	}
+
+对象ES6扩展的深拷贝
+	var obj = {
+	  name: 'FungLeo',
+	  sex: 'man',
+	  old: '18'
+	}
+	var { ...obj2 } = obj
+	obj.old = '22'
+	console.log(obj)
+	console.log(obj2)

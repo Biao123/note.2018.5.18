@@ -1,0 +1,64 @@
+https://github.com/prettyEcho/deep-js/issues/1
+
+闭包
+当一个函数能够记住并访问到其所在的词法作用域及作用域链，
+特别强调是在其定义的作用域外进行的访问，此时该函数和其上层执行上下文共同构成闭包。
+
+
+ function foo() {
+     let a = 2;
+     function bar() {
+         console.log( a );
+     }
+     return bar;
+ }
+ let baz = foo();
+ baz(); //baz指向的对象会永远存在堆内存中
+ baz = null; //如果baz不再使用，将其指向的对象释放
+
+编译阶段
+
+	词法分析（Lexing）
+	这个过程会将由字符组成的字符串分解成(对编程语言来说)有意义的代码块，这些代 码块被称为词法单元(token)。
+
+	语法分析（Parsing）
+	这个过程是将词法单元流(数组)转换成一个由元素逐级嵌套所组成的代表了程序语法 结构的树。这个树被称为“抽象语法树”(Abstract Syntax Tree，AST)。
+
+执行阶段
+1. JS引擎创建一个全局对象（Global Object)
+	对象全局只存在一份，它的属性在任何地方都可以访问，
+	//创建一个全局对象
+	var globalObject = {
+	    Math:{},
+	    String:{},
+	    Date:{},
+	    document:{}, //DOM操作
+	    ...
+	    window:this //让window属性指向了自身
+	}
+
+2. JS引擎会创建一个执行环境栈（Execution Context Stack)
+	栈：采用先进后出，后进先出的特点。
+	堆：
+
+3.创建全局执行上下文（Execution Context）就是 当前代码的执行环境
+	js执行环境
+		全局环境：JavaScript代码运行起来会首先进入该环境
+		函数环境：当函数被调用执行时，会进入当前函数中执行代码
+		eval，with
+
+4. 全局上下文推入执行环境栈底
+
+5. 代码开始从上往下执行，这里我们暂且不谈标识符处理，
+	当代码执行到bar(),生成bar执行上下文，推入栈中
+
+6. 代码执行到foo(),生成foo执行上下文，推入栈中
+
+7. foo()执行完，foo执行上下文出栈
+
+8. bar()执行完，bar执行上下文出栈
+
+9. 全局上下文执行上下文出栈
+
+
+

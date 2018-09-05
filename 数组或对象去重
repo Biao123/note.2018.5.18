@@ -1,0 +1,32 @@
+一般数组去重
+
+function  arrayUnique1(str){
+
+  var newArr =  [];
+
+   for(var i=0; i<str.length; i++){
+
+      if(newArr.indexOf(str[i]) == -1){
+
+              newArr.push(sttr[i])
+
+     }
+
+ }
+
+     return   newArr;
+
+}
+
+对象去重
+
+arrayUnique2(arr, name) {
+    var hash = {};
+     return arr.reduce(function (item, next) {
+          hash[next[name]] ? '' : hash[next[name]] = true && item.push(next);
+          return item;
+         }, []);
+},
+调用    arrayUnique2（arr,'name'）
+
+注意点:   若格式为数组嵌套对象,一般去重无法定位到具体属性名/值  所以无法实现去重,  必须采用一 一对应属性名/值的方式匹配然后实现去重!!!

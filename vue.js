@@ -135,7 +135,35 @@ this.people.splice(idnex,1)
 <span class="num">{{item.num.toFixed(2)}}</span>
 :class="{'check-true':item.select}"
 
+vue-hover-事件
+	<li v-for='(item,index) in TabList'  class="knowleadagePoint_Tab" @mouseover="overShow" @mouseout="outHide">
+		<div >
+		  <span style="display: block;text-align: center;">{{item.kpName | tabFilter}}</span>
+		  <div class="edit" :class="{show:showText,hide:hideText}">
+		    <span @click='tabEdit(index)'>编辑</span>
+		    <span @click='tabDelete(index)'>删除</span>
+		  </div>
+		</div>
+	</li>
 
+	showText: false,
+	hideText: true,
+
+	overShow(){
+	    this.showText = !this.showText
+		this.hideText = !this.hideText
+	},
+	outHide(){
+	    this.showText = !this.showText
+		this.hideText = !this.hideText
+	},
+
+	.show{
+		display: block;
+	}
+	.hide{
+	    display: none;
+	}
 
 
 

@@ -1,0 +1,12 @@
+判断数据类型 Object.prototype.toString.call()  typeof null会等于object  instanceof是通过原型链来判断的，但是对于对象来说，Array也会被转换成Object
+var type = function(data) {
+      var toString = Object.prototype.toString;
+      var dataType = data instanceof Element
+          				? 'element' // 为了统一DOM节点类型输出
+          				: toString
+              				.call(data)
+              				.replace(/\[object\s(.+)\]/, ''$1')
+              				.toLowerCase()
+      return dataType
+};
+

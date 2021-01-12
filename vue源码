@@ -1,0 +1,142 @@
+angular脏检测
+react vdom
+
+对象object Object.defineProperty
+数组array 其实也是定义在object里，所以也是在getter中收集依赖
+
+arr = []
+Array.prototype.newPush = function (val) {
+    this.push(val)
+}
+arr.newPush(1)
+重新给Array定义了一个newPush的方法
+
+Object.create(person)
+Object.create()创建一个新对象，基层父级参数和方法，修改时不会影响父级，类似深拷贝？
+
+vdom diff算法
+    js对象描述一个dom节点
+let vdom = {
+    tag: 'div',
+    text: 'vdom',
+    children: [],
+    attrs: {
+        class: 'vdom',
+        id: 'vdom'
+    }
+}
+
+js描述一个dom需要的一切真实属性
+export default class VNode {
+    constructor (
+        tag ?: String,
+        children ?: ?Array<VNode>
+        ...
+    ) {
+        this.children = children
+        this.tag = tag
+    }
+}
+
+VNode类型   注释节点isCommet，文本节点else，元素节点tag，组件节点，函数式组件节点，克隆节点，
+注释节点
+const node = new VNode()
+node.text = '注释'
+node.isCommet = true
+
+组件节点
+元素节点外新增 componentOptions 组件options选项类似props, componentInstance，组件对应的vue实例
+
+函数式组件节点
+组件节点外新增 fnOptions  fnContext
+
+diff算法
+对比新旧VNode的过程。叫做patch补丁
+
+nodeOps 是vue未跨平台兼容做的对所有节点操作方法做了封装
+    nodeOpts.createTextNode() 等同于 document.createTextNode()
+
+删除父节点
+let fatherNode = nodeOps.parentNode(el)
+nodeOps.removeChild(fatherNode, el)
+
+不包含变量的节点 静态节点 diff时直接过滤
+
+模板编译
+<template></template>
+vue将temnplate下的html和类似html的v-model等内容进行编译生成渲染函数，render的编译过程
+
+模板解析阶段：将模板字符串用正则等方法解析成抽象语法树 ast
+优化阶段：优化器-optimizer
+代码生成阶段
+
+解析器：html解析器，文本解析器，过滤器解析器
+parseHTML > parseText > parseFilters
+
+parseText let txext = "hello{{name}}"
+char(text) {
+    if (res = parseText(text)) {
+        let element = {
+            type: 2,
+            expression: res.expression, // 区分变量和非变量 hello _s(name)
+            tolens: res.tokens, // 数组形式的expression [hello, {'@binding': name}, ]
+            text
+        }
+    }
+}
+
+生命周期
+初始阶段：vue实例初始化一些属性，事件，响应式数据
+模板编译阶段：将模板编译成render函数
+挂载阶段：
+销毁阶段
+
+new Vue() vue的一个构造函数，从一个类中实例化出一个对象
+调用的一个_init()的方法
+initLifecycle(vm)
+initEvents(vm)
+initRender(vm)
+callHock(vm, 'beforeCreate')
+initInjections(vm) // 初始化injection
+initState(vm) // props,watch,computed,data,methods
+initProvide(vm)
+callHock(vm, 'created')
+
+export const onRE = /^@|^v-on:/
+export const dirRE = /^:|^@|^v-/
+
+
+provide 和 inject 选项绑定的数据不是响应式的
+
+实例方法篇
+数据相关
+    $set,$delete,$watch
+    export function stateMixin (Vue) {
+        Vue.prototype.$set = set
+        Vue.prototype.$delete = del
+        Vue.prototype.$watch = function () {}
+    }
+
+    vm.$watch(expOrFn, function, [options])
+    vm.$watch('name', function(new, old) {})
+    deep 监听数组不需要deep
+    immediate立即以当前返回值触发回调
+
+    teardown () {
+        let i = this.deps.length
+        while (i--) {
+            this.deps[i].removeSub(this)
+        }
+    }
+    在非vue实例或vue实例下的根数据
+
+    对象新增和删除一堆key/value,数组通过下标修改数据值都是无法监听的
+    判断是否undefined，null和原始类型
+    判断是否数组且有效key，取最大值 Math.max(key, target.length)
+    key是否已经在对象中， target[key] = val
+
+    $delete vue不能检测属性被删除的限制
+
+
+
+
